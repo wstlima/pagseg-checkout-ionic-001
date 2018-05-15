@@ -12,6 +12,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PagseguroPgtoServiceProvider } from '../providers/pagseguro-pgto-service/pagseguro-pgto-service';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { DatePipe } from '@angular/common';
+import { Http, HttpModule } from '@angular/http';
+import { VarGlobalProvider } from '../providers/var-global/var-global';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -22,7 +27,9 @@ import { PagseguroPgtoServiceProvider } from '../providers/pagseguro-pgto-servic
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({name: '__meubd'}),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +43,9 @@ import { PagseguroPgtoServiceProvider } from '../providers/pagseguro-pgto-servic
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PagseguroPgtoServiceProvider
+    PagseguroPgtoServiceProvider,
+    DatePipe,
+    VarGlobalProvider
   ]
 })
 export class AppModule {}
